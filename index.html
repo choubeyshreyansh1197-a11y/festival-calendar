@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Festival Calendar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>Festival & Events Calendar</h1>
+      <p>View monthly festivals and add your own events in style ✨</p>
+    </header>
+
+    <main class="layout">
+      <!-- Calendar Section -->
+      <section class="calendar-card">
+        <div class="calendar-header">
+          <button id="prevMonth" class="nav-btn">‹</button>
+          <div class="month-label">
+            <span id="monthName"></span>
+            <span id="year"></span>
+          </div>
+          <button id="nextMonth" class="nav-btn">›</button>
+        </div>
+
+        <div class="weekdays">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+        </div>
+
+        <div id="calendarGrid" class="calendar-grid"></div>
+      </section>
+
+      <!-- Sidebar / Event Details Section -->
+      <section class="sidebar-card">
+        <h2 id="selectedDateTitle">Select a date</h2>
+
+        <form id="addEventForm" class="event-form">
+          <label for="eventDate">Date</label>
+          <input type="date" id="eventDate" required />
+
+          <label for="eventTitle">Event title</label>
+          <input
+            type="text"
+            id="eventTitle"
+            placeholder="e.g. Friend's birthday"
+            required
+          />
+
+          <label for="eventType">Event type</label>
+          <select id="eventType">
+            <option value="festival">Festival</option>
+            <option value="personal">Personal</option>
+            <option value="other">Other</option>
+          </select>
+
+          <button type="submit" class="add-btn">Add Event</button>
+        </form>
+
+        <div class="event-list-container">
+          <h3>Events on this day</h3>
+          <ul id="eventList" class="event-list">
+            <li class="empty-state">No events selected yet.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>Built by a first-year university student 👨‍🎓</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+/* Basic reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #1e3c72, #2a5298 40%, #0f172a);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  color: #f9fafb;
+}
+
+.app {
+  max-width: 1100px;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+}
+
+/* Header */
+.app-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.app-header h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.app-header p {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  color: #cbd5f5;
+}
+
+/* Layout */
+.layout {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  gap: 20px;
+}
+
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Calendar Card */
+.calendar-card {
+  background: linear-gradient(145deg, #020617, #0f172a);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.8);
+}
+
+/* Calendar header (month controls) */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.month-label {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+#monthName {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+#year {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.nav-btn {
+  border: none;
+  background: rgba(148, 163, 184, 0.2);
+  color: #e5e7eb;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(248, 250, 252, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Weekday labels */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 6px;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* Calendar grid */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+/* Each day cell */
+.day-cell {
+  aspect-ratio: 1 / 1;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 14px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.day-cell:hover {
+  border-color: rgba(248, 250, 252, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 15px rgba(15, 23, 42, 0.6);
+}
+
+.day-number {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* When date is not in current month (if you add that later) */
+.day-cell.inactive {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* Highlight for today */
+.day-cell.today {
+  border-color: #facc15;
+  box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.7);
+}
+
+/* Small colored dots to show events */
+.event-dots {
+  display: flex;
+  gap: 2px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.event-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+}
+
+/* Colors by type */
+.event-dot.festival {
+  background: #f97316; /* orange */
+}
+
+.event-dot.personal {
+  background: #22c55e; /* green */
+}
+
+.event-dot.other {
+  background: #38bdf8; /* blue */
+}
+
+/* Sidebar Card */
+.sidebar-card {
+  background: linear-gradient(145deg, #020617, #020819);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#selectedDateTitle {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+/* Event form */
+.event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.event-form label {
+  font-size: 0.8rem;
+  color: #e5e7eb;
+}
+
+.event-form input,
+.event-form select {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  padding: 6px 8px;
+  color: #f9fafb;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.event-form input:focus,
+.event-form select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.6);
+}
+
+.add-btn {
+  margin-top: 4px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #022c22;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: transform 0.1s ease, box-shadow 0.15s ease, filter 0.2s ease;
+}
+
+.add-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 15px rgba(22, 163, 74, 0.5);
+  filter: brightness(1.05);
+}
+
+/* Event list */
+.event-list-container h3 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.event-list {
+  list-style: none;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.event-list li {
+  padding: 6px 8px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.event-badge {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.event-badge.festival {
+  background: rgba(248, 153, 68, 0.18);
+  border: 1px solid #f97316;
+  color: #fed7aa;
+}
+
+.event-badge.personal {
+  background: rgba(34, 197, 94, 0.16);
+  border: 1px solid #22c55e;
+  color: #bbf7d0;
+}
+
+.event-badge.other {
+  background: rgba(56, 189, 248, 0.16);
+  border: 1px solid #38bdf8;
+  color: #bae6fd;
+}
+
+.event-title {
+  flex: 1;
+}
+
+.empty-state {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Footer */
+.app-footer {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
